@@ -1,0 +1,7 @@
+/.idea/.gitignore
+/.idea/dataSources.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/tender-test-app.iml
+/.idea/vcs.xml
+/pgdata/
