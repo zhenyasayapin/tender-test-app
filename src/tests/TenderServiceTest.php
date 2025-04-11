@@ -25,14 +25,9 @@ class TenderServiceTest extends KernelTestCase
         );
     }
 
-    public function testServiceMustCreateTender()
+    public function testMustCreateTender()
     {
-        $tender = new Tender();
-
-        $tender->setName('Casual name');
-        $tender->setStatus(TenderStatusEnum::OPEN->value);
-        $tender->setExternalCode(123);
-        $tender->setNumber('1234-5');
+        $tender = $this->createTender();
 
         $this->service->create($tender);
 
@@ -42,14 +37,9 @@ class TenderServiceTest extends KernelTestCase
         );
     }
 
-    public function testServiceMustGetTender()
+    public function testMustGetTender()
     {
-        $tender = new Tender();
-
-        $tender->setName('Casual name');
-        $tender->setStatus(TenderStatusEnum::OPEN->value);
-        $tender->setExternalCode(123);
-        $tender->setNumber('1234-5');
+        $tender = $this->createTender();
 
         $this->service->create($tender);
 
@@ -59,14 +49,9 @@ class TenderServiceTest extends KernelTestCase
         );
     }
 
-    public function testServiceMustGetAllTenders()
+    public function testMustGetAllTenders()
     {
-        $tender = new Tender();
-
-        $tender->setName('Casual name');
-        $tender->setStatus(TenderStatusEnum::OPEN->value);
-        $tender->setExternalCode(123);
-        $tender->setNumber('1234-5');
+        $tender = $this->createTender();
 
         $tenders = [
             $tender,
@@ -82,5 +67,17 @@ class TenderServiceTest extends KernelTestCase
             count($tenders),
             $this->service->getAll()
         );
+    }
+
+    private function createTender(): Tender
+    {
+        $tender = new Tender();
+
+        $tender->setName('Casual name');
+        $tender->setStatus(TenderStatusEnum::OPEN->value);
+        $tender->setExternalCode(123);
+        $tender->setNumber('1234-5');
+
+        return $tender;
     }
 }
