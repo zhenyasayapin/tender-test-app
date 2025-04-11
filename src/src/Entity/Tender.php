@@ -32,10 +32,10 @@ class Tender
     private string $name;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
-    private \DateTimeInterface $updatedAt;
+    private \DateTimeInterface $date;
 
     public function __construct() {
-        $this->updatedAt = new \DateTimeImmutable();
+        $this->date = new \DateTimeImmutable();
     }
 
     public function getId(): int
@@ -87,26 +87,20 @@ class Tender
         return $this;
     }
 
-    public function getUpdatedAt(): \DateTimeInterface
+    public function getDate(): \DateTimeInterface
     {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-        return $this;
+        return $this->date;
     }
 
     #[ORM\PrePersist]
     public function onPrePersist(): void
     {
-        $this->updatedAt = new \DateTimeImmutable();
+        $this->date = new \DateTimeImmutable();
     }
 
     #[ORM\PreUpdate]
     public function onPreUpdate(): void
     {
-        $this->updatedAt = new \DateTimeImmutable();
+        $this->date = new \DateTimeImmutable();
     }
 }

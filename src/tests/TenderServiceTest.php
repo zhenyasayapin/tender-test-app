@@ -65,8 +65,27 @@ class TenderServiceTest extends KernelTestCase
 
         $this->assertCount(
             count($tenders),
-            $this->service->getAll()
+            $this->service->getAll(),
         );
+    }
+
+    public function testMustReturnAllTendersWithFilter()
+    {
+        $defaultTender = $this->createTender();
+
+        $customTender = $this->createTender();
+        $customTender->setName('Custom');
+
+        $this->service->create($defaultTender);
+        $this->service->create($customTender);
+
+        $tenders = $this->service->getAll(['name' => 'Custom', 'date' => $customTender->getDate()->format(DATE_ATOM)]);
+
+        /** @var Tender $tender */
+        foreach($tenders as $tender) {
+            $this->assertEquals('Custom', $tender->getName());
+            $this->assertEquals($customTender->getDate()->format(DATE_ATOM), $tender->getDate()->format(DATE_ATOM));
+        }
     }
 
     private function createTender(): Tender

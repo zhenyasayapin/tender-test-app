@@ -46,8 +46,10 @@ final class TenderController extends AbstractController
     }
 
     #[Route('/tender', name: 'app_tender_get_all', methods: ['GET'])]
-    public function getAll(): JsonResponse
+    public function getAll(Request $request): JsonResponse
     {
-        return $this->json($this->tenderService->getAll());
+        return $this->json(
+            $this->tenderService->getAll($request->query->all())
+        );
     }
 }

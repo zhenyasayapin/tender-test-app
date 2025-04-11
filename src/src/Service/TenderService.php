@@ -26,8 +26,12 @@ class TenderService
         return $this->repository->find($id);
     }
 
-    public function getAll(): array
+    public function getAll(array $filters = []): array
     {
-        return $this->repository->findAll();
+        if (isset($filters['date'])) {
+            $filters['date'] = new \DateTime($filters['date']);
+        }
+
+        return $this->repository->findBy($filters);
     }
 }
