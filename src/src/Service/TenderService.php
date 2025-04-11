@@ -25,4 +25,9 @@ class TenderService
     {
         return $this->repository->find($id);
     }
+
+    public function getAll(): array
+    {
+        return $this->repository->findAll();
+    }
 }

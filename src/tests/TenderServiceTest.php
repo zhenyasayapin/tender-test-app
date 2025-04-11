@@ -58,4 +58,29 @@ class TenderServiceTest extends KernelTestCase
             $this->service->get($tender->getId())
         );
     }
+
+    public function testServiceMustGetAllTenders()
+    {
+        $tender = new Tender();
+
+        $tender->setName('Casual name');
+        $tender->setStatus(TenderStatusEnum::OPEN->value);
+        $tender->setExternalCode(123);
+        $tender->setNumber('1234-5');
+
+        $tenders = [
+            $tender,
+            $tender,
+            $tender
+        ];
+
+        foreach ($tenders as $testTender) {
+            $this->service->create($testTender);
+        }
+
+        $this->assertCount(
+            count($tenders),
+            $this->service->getAll()
+        );
+    }
 }
