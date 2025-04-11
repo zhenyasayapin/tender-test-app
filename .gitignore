@@ -5,3 +5,4 @@
 /.idea/tender-test-app.iml
 /.idea/vcs.xml
 /pgdata/
+/.idea/phpunit.xml

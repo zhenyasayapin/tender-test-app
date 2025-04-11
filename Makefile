@@ -21,3 +21,8 @@ composer:
 	@docker exec -it $(PHP_CONTAINER) symfony composer $(ARGS)
 symfony:
 	@docker exec -it $(PHP_CONTAINER) symfony $(ARGS)
+phpunit:
+	@docker exec -it $(PHP_CONTAINER) php bin/console doctrine:database:drop --env=test --force --if-exists
+	@docker exec -it $(PHP_CONTAINER) php bin/console doctrine:database:create --env=test
+	@docker exec -it $(PHP_CONTAINER) php bin/console doctrine:schema:update --env=test --force
+	@docker exec -it $(PHP_CONTAINER) vendor/bin/phpunit $(ARGS)
