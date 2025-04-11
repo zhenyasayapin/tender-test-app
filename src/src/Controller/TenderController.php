@@ -38,4 +38,10 @@ final class TenderController extends AbstractController
             return $this->json($this->tenderService->create($tender));
         }
     }
+
+    #[Route('/tender/{id}', name: 'app_tender_get', methods: ['GET'])]
+    public function get(int $id): JsonResponse
+    {
+        return $this->json($this->tenderService->get($id));
+    }
 }
