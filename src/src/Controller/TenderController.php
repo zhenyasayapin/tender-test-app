@@ -17,7 +17,7 @@ final class TenderController extends AbstractController
         private readonly TenderService $tenderService,
     ) {}
 
-    #[Route('/tender', name: 'app_tender_create', methods: ['POST'])]
+    #[Route('/tenders', name: 'app_tender_create', methods: ['POST'])]
     public function create(SerializerInterface $serializer, ValidatorInterface $validator, Request $request): JsonResponse
     {
         if (empty($request->getContent())) {
@@ -39,13 +39,13 @@ final class TenderController extends AbstractController
         }
     }
 
-    #[Route('/tender/{id}', name: 'app_tender_get', methods: ['GET'])]
+    #[Route('/tenders/{id}', name: 'app_tender_get', methods: ['GET'])]
     public function get(int $id): JsonResponse
     {
         return $this->json($this->tenderService->get($id));
     }
 
-    #[Route('/tender', name: 'app_tender_get_all', methods: ['GET'])]
+    #[Route('/tenders', name: 'app_tender_get_all', methods: ['GET'])]
     public function getAll(Request $request): JsonResponse
     {
         return $this->json(
