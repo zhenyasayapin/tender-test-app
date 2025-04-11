@@ -96,6 +96,7 @@ class TenderServiceTest extends KernelTestCase
         $tender->setStatus(TenderStatusEnum::OPEN->value);
         $tender->setExternalCode(123);
         $tender->setNumber('1234-5');
+        $tender->setDate(new \DateTime());
 
         return $tender;
     }

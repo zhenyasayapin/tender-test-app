@@ -25,6 +25,7 @@ class TenderFixtures extends Fixture
                     $tender->setNumber($data[1]);
                     $tender->setStatus(TenderStatusEnum::tryFrom($data[2])->value);
                     $tender->setName($data[3]);
+                    $tender->setDate(new \DateTime($data[4]));
 
                     $manager->persist($tender);
 

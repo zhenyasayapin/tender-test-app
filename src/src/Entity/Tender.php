@@ -32,10 +32,10 @@ class Tender
     private string $name;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
+    #[NotBlank]
     private \DateTimeInterface $date;
 
     public function __construct() {
-        $this->date = new \DateTimeImmutable();
     }
 
     public function getId(): int
@@ -92,15 +92,8 @@ class Tender
         return $this->date;
     }
 
-    #[ORM\PrePersist]
-    public function onPrePersist(): void
+    public function setDate(\DateTimeInterface $date): void
     {
-        $this->date = new \DateTimeImmutable();
-    }
-
-    #[ORM\PreUpdate]
-    public function onPreUpdate(): void
-    {
-        $this->date = new \DateTimeImmutable();
+        $this->date = $date;
     }
 }
