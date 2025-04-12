@@ -12,7 +12,7 @@ make console d:f:l
 
 ## Authorization header 
 
-0123456789
+Bearer 0123456789
 
 ## Routes
 
